@@ -15,12 +15,14 @@ function App() {
 
   }
   let onDelete = (id: number) => {
-
+    let filterItem = todos.filter(val => val.id !== id)
+    setTodos(filterItem)
+    console.log(id, '..........', filterItem)
   }
   return (
     <div >
       <Newtodo OnAddData={formdata} />
-      <Todo items={todos} />
+      <Todo items={todos} delete={onDelete} />
     </div>
   );
 }
