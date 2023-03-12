@@ -1,11 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import TodoContext from '../store/context'
 import styles from './todoitem.module.css'
 const Newtodo: React.FC<{ OnAddData: (data: string) => void }> = (props) => {
     const todoTextInputRef = useRef<HTMLInputElement>(null)
+
+    let storeData = useContext(TodoContext)
     let submitHandler = (event: React.FormEvent) => {
         event.preventDefault()
         const enteredText = todoTextInputRef.current!.value
-        props.OnAddData(enteredText)
+        storeData.addTodo(enteredText)
     }
     return (
         <form onSubmit={submitHandler} className={styles.form}>

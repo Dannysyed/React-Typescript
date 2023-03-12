@@ -3,6 +3,7 @@ import './App.css';
 import Newtodo from './components/Newtodo';
 import Todo from './components/todo';
 import TodoList from './models/todo';
+import ContextProvider from './store/ContextProvider';
 function App() {
   // const Todos = [new TodoList('Learn React'), new TodoList('Learn Typescript')]
   const [todos, setTodos] = useState<TodoList[]>([])
@@ -20,10 +21,11 @@ function App() {
     console.log(id, '..........', filterItem)
   }
   return (
-    <div >
+    <ContextProvider>
+
       <Newtodo OnAddData={formdata} />
       <Todo items={todos} delete={onDelete} />
-    </div>
+    </ContextProvider>
   );
 }
 
